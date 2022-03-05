@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "REDIS_SOCK=$REDIS_HOST" >> /etc/sysconfig/push-server-multi
+echo "SECURITY_KEY="$SECURITY_KEY >> /etc/sysconfig/push-server-multi
+
+/usr/local/bin/push-server-multi configs all
+/usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
