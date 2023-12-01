@@ -1,15 +1,15 @@
-FROM node:10 AS build
+FROM node:16 AS build
 
 RUN apt update && \
       apt -y install sudo supervisor
 
 WORKDIR /opt
 
-COPY push-server-0.2.2.tgz /opt/push-server-0.2.2.tgz
-RUN npm install --production ./push-server-0.2.2.tgz \
-    && rm /opt/push-server-0.2.2.tgz
+COPY push-server-0.3.0.tgz /opt/push-server-0.3.0.tgz
+RUN npm install --production ./push-server-0.3.0.tgz \
+    && rm /opt/push-server-0.3.0.tgz
 
-FROM node:10-alpine
+FROM node:16-alpine
 
 COPY config /etc/push-server
 COPY sysconfig /etc/sysconfig
